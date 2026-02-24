@@ -1,5 +1,5 @@
 
-# [[Bike Rental Demand Prediction]]
+# Bike Rental Demand Prediction
 
 
 ## Different Phases
@@ -49,7 +49,7 @@ plt.title('Distribution of Bike Rental Counts')
 plt.show()
 ```
 - Distribution of count is skewed. 
-  ![[Bike Rental Demand using GLM right skewed possion like data distribution.png#invert|center|500]]
+  ![[Bike Rental Demand using GLM right skewed possion like data distribution.png|center|500]]
 	- **X-axis (Horizontal): The Number of Bikes.** This represents the "Value" of the rental count (e.g., 0 bikes, 200 bikes, 500 bikes).
 	- **Y-axis (Vertical): The Count of Instances (Frequency).** This represents **how many times** (how many hours in your dataset) that specific bike count occurred.
 	- The tail stretches far to the right, it confirms that a **Poisson** or **Negative Binomial** GLM is better than standard linear regression.
@@ -158,8 +158,8 @@ Y_test_clean = np.asarray(y_test).astype(float)
 
 ## Phase 4: Model Building
 
-### [[Generalized Linear Models (GLMs)]]
-![[Generalized Linear Models (GLMs)#^7fbe2f]]
+### Generalized Linear Models (GLMs)
+Generalized Linear Models are used when underlying data (what you are trying to predict) cannot be defined by a Normal Distribution (bell curve).
 
 >[!note] Interpret Coefficients
 >In a GLM with a **Log Link**, the coefficients are "Multipliers." Because the math uses $e$ (Euler's number), a coefficient of $+0.1$ doesn't mean "add 0.1 bikes"; it means a **percentage change**.
@@ -360,7 +360,7 @@ print(f"Mean Absolute Error: {mae_score:.2f} bikes")
 print(f"RMSLE: {rmsle_score:.4f}")
 ```
 
-Hyperparameter Tuining,
+#### Hyperparameter Tuining
 ```python
 from sklearn.model_selection import RandomizedSearchCV
 import numpy as np
