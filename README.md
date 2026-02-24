@@ -12,7 +12,7 @@
 |**Phase 4**|**Model Building**|Implementing the **Poisson** or **Negative Binomial** regression using `statsmodels`.|
 |**Phase 5**|**Evaluation**|Using metrics like **Mean Poisson Deviance** or **RMSLE** to see how well the model predicts.|
 
-## Phase 1: Data Inspection
+# Phase 1: Data Inspection
 
 - Dataset: [Bike Sharing Demand Dataset](https://www.kaggle.com/datasets/syedhaideralizaidi/bike-sharing-demand-dataset) 
 
@@ -36,9 +36,9 @@ df.describe()
 ```python
 print(df.isnull().sum())
 ```
-- Checking missing data at the columns. 
+- Checking missing data at the columns. There is no data missing. 
 
-## Phase 2: Data Exploration
+# Phase 2: Data Exploration
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -72,7 +72,7 @@ plt.show()
 ```
 - Checking corelation between different features.
 
-## Phase 3: Feature Engineering
+# Phase 3: Feature Engineering
 
 ```python
 df['datetime'] = pd.to_datetime(df['datetime'])
@@ -144,7 +144,7 @@ import statsmodels.api as sm
 X_train_const = sm.add_constant(X_train)
 X_test_const = sm.add_constant(X_test)
 ```
-- Adds a [[Linear Regression#Significance of Intercept ($ beta0$)|intercept]] ($\beta^0$). Column of 1s, model predicts a value for this, which is added to every prediction. 
+- Adds a intercept ($\beta^0$). Column of 1s, model predicts a value for this, which is added to every prediction. 
 
 ```python
 # Convert to clean numpy arrays to avoid 'Object/Boolean' conflicts
@@ -156,9 +156,9 @@ Y_test_clean = np.asarray(y_test).astype(float)
 ```
 - Converting to clean numpy arrays to avoid ‘Object/Boolean’ conflicts, using float for precise calculations.
 
-## Phase 4: Model Building
+# Phase 4: Model Building
 
-### Generalized Linear Models (GLMs)
+## Generalized Linear Models (GLMs)
 Generalized Linear Models are used when underlying data (what you are trying to predict) cannot be defined by a Normal Distribution (bell curve).
 
 >[!note] Interpret Coefficients
@@ -229,7 +229,7 @@ plt.title('Residual Plot: Are the errors random?')
 plt.show()
 ```
 
-![[Bike Rental Demand using GLM residual plot 1.png#invert|center|400]] 
+![](https://github.com/Sayantan615/Bike-Rental-Predictions/blob/main/Bike%20Rental%20Demand%20using%20GLM%20residual%20plot%201.png)
 
 - The thickest part of the cloud is centered right on that red dashed line (0), which means on average the model is unbiased. But the Fan shape means heteroscedasticity. It means your model is very accurate when predicting low bike demands (like at 3 AM) but it becomes much more “uncertain” and has higher errors when predicting peak demand (5PM rush). 
 
@@ -308,7 +308,7 @@ plt.show()
 
 
 
-### [[Decision Trees]]
+## Decision Trees Models
 
 ### Model: Decision Tree (Single Tree)
 
@@ -486,7 +486,7 @@ print(f"RMSLE: {rmsle:.4f}")
 	* **Why it matters:** It recognizes that predicting 20 bikes for a 10-bike demand is a "disaster" (2x error), while predicting 510 for a 500-bike demand is a "huge success."
 	* **Business Logic:** It is often harsher on **under-prediction** (predicting 40 for 100). In bike sharing, it is safer to have 10 extra bikes available (over-prediction) than to turn away 10 customers because you ran out of stock (under-prediction).
 
-## [[Stacking (Stacked Generalization)]]
+# Stacking
 ```python
 from sklearn.ensemble import StackingRegressor
 from sklearn.linear_model import RidgeCV # A simple, stable linear model
@@ -518,7 +518,7 @@ final_preds = np.expm1(log_preds)
 | ------------------------- | --------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
 | **Stacking (RF + XGB)**   | **45.97**       | **0.4150** | **The Final Winner.** The meta-model effectively balanced the stability of the Forest with the precision of the Boost. |
 
-## Conclusion
+# Conclusion
 I started with the most obvious choice for solving a regression problem, linear regression, but as it turned out that when the data is not normally distributed, then normal linear regression will fail, I tried GLM models, Possion, Negative binomial, and Log gaussion. 
 
 While this gave good performance, as it turned out Decision Trees are pretty good for this kind of data. So I tried with single DT, Random Forests and Finally what gave the best results are Gradient Boosted Decision Trees (GBDTs).
