@@ -49,7 +49,7 @@ plt.title('Distribution of Bike Rental Counts')
 plt.show()
 ```
 - Distribution of count is skewed. 
-  ![[Bike Rental Demand using GLM right skewed possion like data distribution.png|center|500]]
+  ![](https://github.com/Sayantan615/Bike-Rental-Predictions/blob/main/Bike%20Rental%20Demand%20using%20GLM%20right%20skewed%20possion%20like%20data%20distribution.png)
 	- **X-axis (Horizontal): The Number of Bikes.** This represents the "Value" of the rental count (e.g., 0 bikes, 200 bikes, 500 bikes).
 	- **Y-axis (Vertical): The Count of Instances (Frequency).** This represents **how many times** (how many hours in your dataset) that specific bike count occurred.
 	- The tail stretches far to the right, it confirms that a **Poisson** or **Negative Binomial** GLM is better than standard linear regression.
